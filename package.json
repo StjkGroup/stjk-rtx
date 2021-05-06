@@ -1,0 +1,60 @@
+{
+  "name": "@stjk/rtx",
+  "version": "0.0.1-alpha.1",
+  "description": "stjk rtx",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development PORT=8002 node node_modules/@stjk/next/devServer/config.js",
+    "pro": "npm run clear && next build && next start",
+    "build": "npm run clear && next build && next export",
+    "clear": "rm -rf .next out",
+    "pub:clear": "rm -rf pub",
+    "pub:tsc": "cd components && npx tsc && cd ..",
+    "pub:babel": "export NODE_ENV='production' && npx babel pub --out-dir pub --copy-files",
+    "pub:pre": "npm run pub:clear && npm run pub:tsc && npm run pub:babel && cp package.json pub && cp README.md pub",
+    "pub": "npm run pub:pre && cd pub && npm publish --access=public && cd .. && npm run pub:clear",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "IE 10"
+  ],
+  "keywords": [
+    "fay",
+    "fay-react-material",
+    "stjk-ui",
+    "stjk-react-material",
+    "frontend"
+  ],
+  "contributors": [
+    "love-fay"
+  ],
+  "bugs": {
+    "url": "https://github.com/StjkGroup/stjk-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StjkGroup/stjk-ui"
+  },
+  "main": "pub/",
+  "module": "*",
+  "files": [
+    "*"
+  ],
+  "email": "869770665@qq.com",
+  "author": "fay",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.2"
+  },
+  "dependencies": {
+    "@babel/cli": "7.5.5",
+    "@stjk/ui": "*"
+  },
+  "devDependencies": {
+    "@stjk/lib": "0.0.1-alpha.12",
+    "@stjk/next": "0.0.1-alpha.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

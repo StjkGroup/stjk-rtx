@@ -1,0 +1,1 @@
+export const GLOBAL_CLASSNAME_PREFIX = "fay-rte-";

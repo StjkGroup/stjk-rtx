@@ -1,0 +1,16 @@
+{
+  "extends": "@stjk/next/typescript/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../pub",                        // 指定输出目录
+    "rootDir": ".",                       // 用来控制输出目录结构 --outDir.
+    "noEmit": false
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "../next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
