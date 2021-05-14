@@ -1,2 +1,14 @@
 [
+  {
+    "path": "fileApi",
+    "target": "https://file-gw.dev.shantaijk.cn/",
+    "changeOrigin": true,
+    "secure": false
+  },
+  {
+    "path": "ossApi",
+    "target": "https://oss-pub.dev.shantaijk.cn/",
+    "changeOrigin": true,
+    "secure": false
+  }
 ]

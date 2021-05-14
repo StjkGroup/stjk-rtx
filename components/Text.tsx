@@ -21,11 +21,11 @@ const useStyles = makeStyles(() =>
       // borderRadius: '10px',
     },
     editor: {
-      width: '100%',
-      height: '100%',
-      padding: '15px',
-      color: '#000000',
-      lineHeight: '30px',
+      // width: '100%',
+      // height: '100%',
+      // padding: '15px',
+      // color: '#000000',
+      // lineHeight: '30px',
       "& .fay-rte-text-align-right": {
         textAlign: 'right'
       },

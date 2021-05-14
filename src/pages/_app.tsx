@@ -32,6 +32,7 @@ export default function MyApp(props: Props) {
         <meta name="x5-fullscreen" content="true"/>
         <meta content="telephone=no" name="format-detection" />
         <meta content="email=no" name="format-detection" />
+        <script src={`${PATH_PREFIX}/lib/env.js`}/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>
       <Provider>

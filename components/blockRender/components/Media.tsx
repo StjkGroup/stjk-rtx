@@ -1,4 +1,5 @@
 import React from 'react';
+import {OSS_URL} from '../../env';
 
 const styles: any = {
   root: {
@@ -30,10 +31,10 @@ const HtmlComponent = (props: any) => {
 };
 
 const BlockRenderMedia = (props: any) => {
-  console.log(props);
-  console.log(props.blockProps);
-  console.log(props.block.getEntityAt(0));
-  console.log(props.block.getEntityAt(1));
+  // console.log(props);
+  // console.log(props.blockProps);
+  // console.log(props.block.getEntityAt(0));
+  // console.log(props.block.getEntityAt(1));
   
   const entity = props.contentState.getEntity(
     props.block.getEntityAt(0)
@@ -47,11 +48,10 @@ const BlockRenderMedia = (props: any) => {
     video: VideoComponent,
     html: HtmlComponent,
   }
-  console.log(type);
   const Com = Component[type];
   return (
     <div style={{...styles.root, ...style}}>
-      <Com src={src} style={styles.media}/>
+      <Com src={OSS_URL+'/file-gateway/'+src} style={styles.media}/>
     </div>
   )
 };
