@@ -26,7 +26,15 @@ const useStyles = makeStyles((theme) =>
       height: '100%',
       border: '1px solid #999999',
       borderRadius: theme.shape.borderRadius,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      position: 'relative',
+      display: "flex",
+      flexFlow: "column",
+      // minHeight: "100vh",
+    },
+    operation: {
+      // position: 'fixed',
+      // top: 0
     },
     editor: {
       width: '100%',
@@ -35,6 +43,10 @@ const useStyles = makeStyles((theme) =>
       padding: '15px',
       color: '#000000',
       lineHeight: '30px',
+      overflow: 'auto',
+      // position: 'absolute',
+      // bottom: 0,
+      // flex: 1,
       "& .fay-rte-text-align-right": {
         textAlign: 'right'
       },
@@ -75,10 +87,9 @@ const useStyles = makeStyles((theme) =>
       "& .fay-rte-lineHeight4em": {
         lineHeight: '4em',
       },
-    },
-    operation: {
-      // padding: '10px 20px',
-      borderBottom: '1px solid #999999'
+      "& figure": {
+        margin: '0',
+      },
     },
     grid: {
       // height: 38
@@ -155,12 +166,11 @@ const RtxEditor = ({onSave, placeholder, defaultValue, onChange}: any) => {
 
   React.useEffect(() => {
     handleFocus();
-    console.log(editorState);
   }, [JSON.stringify(convertToRaw(editorState.getCurrentContent()))]);
 
   return (
     <div className={classes.root}>
-      <Paper elevation={4}>
+      <Paper elevation={4} className={classes.operation}>
         <Operation
           onSave={onSave}
           editorState={editorState}

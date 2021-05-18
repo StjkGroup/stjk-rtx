@@ -17,15 +17,8 @@ const useStyles = makeStyles(() =>
     root: {
       width: '100%',
       height: '100%',
-      // border: '1px solid #999999',
-      // borderRadius: '10px',
     },
     editor: {
-      // width: '100%',
-      // height: '100%',
-      // padding: '15px',
-      // color: '#000000',
-      // lineHeight: '30px',
       "& .fay-rte-text-align-right": {
         textAlign: 'right'
       },
@@ -66,11 +59,14 @@ const useStyles = makeStyles(() =>
       "& .fay-rte-lineHeight4em": {
         lineHeight: '4em',
       },
+      "& figure": {
+        margin: '0',
+      },
     },
   }),
 );
 
-export default ({value}: any) => {
+const Text = ({value}: any) => {
   const classes = useStyles();
   const [editorState, setEditorState] = React.useState(EditorState.createWithContent(emptyContentState));
 
@@ -108,3 +104,5 @@ const emptyContentState = convertFromRaw({
     },
   ],
 });
+
+export default Text;

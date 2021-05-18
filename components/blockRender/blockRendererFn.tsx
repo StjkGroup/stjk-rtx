@@ -15,7 +15,7 @@ const blockRendererFn = (contentBlock: ContentBlock) => {
     // }
     return {
       component: Media,
-      editable: false,
+      editable: true,
     };
   }
   return null;
