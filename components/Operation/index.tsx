@@ -34,16 +34,19 @@
         <Divider orientation="vertical" sx={{ height: '20px' }} />
       </Grid>
       <Grid item>
-        <InlineStyleButtons onChange={onChange} editorState={editorState}/>
+        <ColorButton onChange={onChange} editorState={editorState}/>
+      </Grid>
+      <Grid item>
+        <BackgroundColorButton onChange={onChange} editorState={editorState}/>
       </Grid>
       <Grid item>
         <FontSizeButton onClick={onFocus} onChange={onChange} editorState={editorState}/>
       </Grid>
       <Grid item>
-        <ColorButton onChange={onChange} editorState={editorState}/>
+        <Divider orientation="vertical" sx={{ height: '20px' }} />
       </Grid>
       <Grid item>
-        <BackgroundColorButton onChange={onChange} editorState={editorState}/>
+        <InlineStyleButtons onChange={onChange} editorState={editorState}/>
       </Grid>
       <Grid item>
         <Divider orientation="vertical" sx={{ height: '20px' }} />

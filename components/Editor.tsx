@@ -18,6 +18,7 @@ import {blockRendererFn} from './blockRender';
 import extendedBlockRenderMap from './blockRenderMap';
 import {insertImages} from './utils/file';
 import Operation from './Operation';
+// import moveSelectionToEnd from './moveSelectionToEnd';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -88,7 +89,7 @@ const useStyles = makeStyles((theme) =>
         lineHeight: '4em',
       },
       "& figure": {
-        margin: '0',
+        margin: 0
       },
     },
     grid: {

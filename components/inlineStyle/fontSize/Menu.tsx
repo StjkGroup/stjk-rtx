@@ -4,11 +4,12 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import clsx from 'clsx';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import inlineTypes from './types';
-import {RichUtils} from "draft-js";
+// import {RichUtils} from "draft-js";
 import FormatSizeIcon from '@material-ui/icons/FormatSize';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '../../ToggleButtonGroup';
+import {toggleInlineStyle} from '../utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -57,24 +58,27 @@ const FontSizeMenu = ({editorState, onChange}: any) => {
   const open = Boolean(anchorEl);
 
   const handleChangeInlineStyle = (inlineStyle: any) => {
-    // const selection = editorState.getSelection();
-    let nextEditorState;
+    // let nextEditorState = editorState;
     // const currentStyle = editorState.getCurrentInlineStyle();
-    // nextEditorState = Object.keys(customStyleMap).reduce((state, style) => {
-    //   if(currentStyle.has(style))
-    //     return RichUtils.toggleInlineStyle(state, style);
-    //   return state;
-    // }, editorState);
+    // console.log(currentStyle.has(inlineStyle));
+    // if(currentStyle.has(inlineStyle)){
+    //   return;
     // }
-    nextEditorState = RichUtils.toggleInlineStyle(
-      editorState,
-      inlineStyle
-    );
+    // inlineTypes.map((item) => {
+    //   const {type} = item;
+    //   if(currentStyle.has(type)){
+    //     console.log(type, currentStyle.has(type));
+    //     nextEditorState = RichUtils.toggleInlineStyle(nextEditorState, type);
+    //   }
+    // });
+    // nextEditorState = RichUtils.toggleInlineStyle(
+    //   nextEditorState,
+    //   inlineStyle
+    // );
+    const nextEditorState = toggleInlineStyle(editorState, inlineTypes, inlineStyle);
     onChange(nextEditorState);
     setAnchorEl(null);
   };
-
-  console.log(anchorEl);
 
   return (
     <ClickAwayListener onClickAway={handleClose}>

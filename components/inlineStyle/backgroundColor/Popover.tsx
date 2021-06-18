@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const prefix = 'backgroundColor-';
+
 const BgColorPopover = ({editorState, onChange}: any) => {
   const classes = useStyles();
 
@@ -49,7 +51,7 @@ const BgColorPopover = ({editorState, onChange}: any) => {
   let activeType = '';
   types.map((item) => {
     let {type} = item;
-    type = 'backgroundColor-'+type;
+    type = prefix+type;
     if(activeType.length === 0 && currentInlineType.has(type)){
       activeType = type;
     }

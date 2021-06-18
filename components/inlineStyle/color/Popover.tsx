@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const prefix = 'color-';
+
 const ColorPopover = ({editorState, onChange}: any) => {
   const classes = useStyles();
 
@@ -47,14 +49,16 @@ const ColorPopover = ({editorState, onChange}: any) => {
 
   const currentInlineType = editorState.getCurrentInlineStyle();
   let activeType;
+  // console.log(currentInlineType);
   types.map((item) => {
       let {type} = item;
-      type = 'color-'+type;
+      type = prefix+type;
+      // console.log(type, currentInlineType.has(type));
       if(currentInlineType.has(type)){
           activeType = type;
       }
   });
-
+  // console.log(activeType);
   const open = Boolean(anchorEl);
 
   return (

@@ -60,7 +60,7 @@ const useStyles = makeStyles(() =>
         lineHeight: '4em',
       },
       "& figure": {
-        margin: '0',
+        margin: 0
       },
     },
   }),

@@ -3,55 +3,37 @@
  */
 import React from 'react';
 import inlineTypes from './types';
-import {RichUtils} from "draft-js";
 import customStyleMap from './customStyleMap';
-// import './style/index.less';
-// import clsx from 'clsx';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import {toggleInlineStyle} from '../utils';
 
 const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     btn: {
-      // backgroundColor: theme.palette.common.white
-      // cursor: 'pointer',
-      // padding: '5px 15px 5px 15px',
-      // border: 'none',
-      // backgroundColor: '#FFFFFF',
       minWidth: '10px',
       height: '20px',
+      padding: 4,
+      borderWidth: '1px',
+      borderStyle: 'solid',
       '&:hover': {
-        border: '1px solid #dddddd',
-        // box-shadow: @box-shadow-base;
-        margin: 0
+        border: '1px solid #000000 !important',
       }
     },
   }),
 );
 
+const prefix = 'color-';
+
 const ColorButtons = ({editorState, onChange, hidePopover}: any) => {
   const classes = useStyles();
 
   const handleChangeInlineStyle = (inlineStyle: any) => {
-    // const selection = editorState.getSelection();
-    let nextEditorState;
-    // const currentStyle = editorState.getCurrentInlineStyle();
-    // if (selection.isCollapsed()) {
-        // nextEditorState = Object.keys(customStyleMap).reduce((state, style) => {
-        //     if(currentStyle.has(style))
-        //     return RichUtils.toggleInlineStyle(state, style);
-        //     return state;
-        // }, editorState);
-    // }
-    nextEditorState = RichUtils.toggleInlineStyle(
-      editorState,
-      inlineStyle
-    );
+    const nextEditorState = toggleInlineStyle(editorState, inlineTypes, inlineStyle, prefix);
     onChange(nextEditorState);
     hidePopover();
 };
-
-  // const currentInlineType = editorState.getCurrentInlineStyle();
 
   return (
     <Grid container spacing={1}>
@@ -61,14 +43,19 @@ const ColorButtons = ({editorState, onChange, hidePopover}: any) => {
           return [
             i%10===0&&<Grid key={i+'-'+0} item xs={1}/>,
             <Grid key={i+'-'+1} item xs={1}>
-            <div
-              onClick={() => handleChangeInlineStyle('color-'+type)}
-              // active={currentInlineType.has(type)}
-              className={classes.btn}
-              style={{...style, backgroundColor: customStyleMap['color-'+type].color}}
-            >
-              {children}
-            </div></Grid>,
+              <Button
+                onClick={() => handleChangeInlineStyle(prefix+type)}
+                // active={currentInlineType.has(type)}
+                className={classes.btn}
+                style={{
+                  ...style,
+                  backgroundColor: customStyleMap[prefix+type].color,
+                  borderColor: customStyleMap[prefix+type].color,
+                }}
+              >
+                {children}
+              </Button>
+            </Grid>,
             i%10===9&&<Grid key={i+'-'+2} item xs={1}/>
           ]
         })

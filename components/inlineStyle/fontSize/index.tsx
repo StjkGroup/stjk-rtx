@@ -5,6 +5,6 @@ import Button from './Menu';
 import customStyleMap from './customStyleMap';
 
 export {
-    Button,
-    customStyleMap
+  Button,
+  customStyleMap
 }
