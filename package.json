@@ -1,6 +1,6 @@
 {
   "name": "@stjk/rtx",
-  "version": "0.0.1-alpha.10",
+  "version": "0.0.1-alpha.12",
   "description": "stjk rtx",
   "scripts": {
     "start": "cross-env NODE_ENV=development PORT=8002 node node_modules/@stjk/next/devServer/config.js",

@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import {
   Editor, EditorState,
   convertFromRaw, convertToRaw,
-  SelectionState, Modifier
+  SelectionState, Modifier, RichUtils
 } from 'draft-js';
 import {customStyleMap as customStyleMap} from './inlineStyle';
 import {customStyleMap as fontSizeCustomStyleMap} from './inlineStyle/fontSize';
@@ -18,6 +18,7 @@ import {blockRendererFn} from './blockRender';
 import extendedBlockRenderMap from './blockRenderMap';
 import {insertImages} from './utils/file';
 import Operation from './Operation';
+// import {myKeyBindingFn} from './keyBindings';
 // import moveSelectionToEnd from './moveSelectionToEnd';
 
 const useStyles = makeStyles((theme) =>
@@ -108,6 +109,10 @@ const RtxEditor = ({onSave, placeholder, defaultValue, onChange}: any) => {
 
   const handleFocus = () => {
     editorRef.current.focus();
+    // const selectionState = editorState.getSelection();
+    // const start2 = selectionState.getStartOffset();
+    // const end2 = selectionState.getEndOffset();
+    // console.log(start2, end2);
   }
   
   // const handleKeyCommand = (command: DraftEditorCommand, editorState: EditorState) => {
@@ -121,6 +126,17 @@ const RtxEditor = ({onSave, placeholder, defaultValue, onChange}: any) => {
   //   }
   //   return "not-handled";
   // }
+
+  const handleKeyCommand = (command: string, editorState: EditorState) => {
+      const newState = RichUtils.handleKeyCommand(editorState, command);
+      console.log(newState);
+      if (newState) {
+        handleChange(newState!);
+        console.log('fayeditor-backspace');
+        return 'handled';
+      }
+    return 'not-handled';
+  }
 
   const handlePastedText = (text: string) => {
     if(text){
@@ -139,8 +155,6 @@ const RtxEditor = ({onSave, placeholder, defaultValue, onChange}: any) => {
   }
 
   const handlePastedFiles = (files: Array<Blob>) => {
-    console.log(files);
-    console.log(files.length);
     if(files){
       insertImages(editorState, files).then(res => {
         if(res.success){
@@ -159,9 +173,9 @@ const RtxEditor = ({onSave, placeholder, defaultValue, onChange}: any) => {
   }
 
   const handleChange = (_editorState: EditorState) => {
-    setEditorState(_editorState);
     const raw = convertToRaw(_editorState.getCurrentContent());
     const value = JSON.stringify(raw);
+    setEditorState(_editorState);
     onChange && onChange(value);
   };
 
@@ -186,7 +200,8 @@ const RtxEditor = ({onSave, placeholder, defaultValue, onChange}: any) => {
                 blockStyleFn={blockStyleFn}
                 blockRenderMap={extendedBlockRenderMap}
                 blockRendererFn={blockRendererFn}
-                // handleKeyCommand={handleKeyCommand}
+                handleKeyCommand={handleKeyCommand}
+                // keyBindingFn={myKeyBindingFn}
                 handlePastedText={handlePastedText}
                 handlePastedFiles={handlePastedFiles}
                 handleDroppedFiles={handleDroppedFiles}

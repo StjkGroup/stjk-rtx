@@ -4,7 +4,6 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import clsx from 'clsx';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import inlineTypes from './types';
-// import {RichUtils} from "draft-js";
 import FormatSizeIcon from '@material-ui/icons/FormatSize';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ToggleButton from '@material-ui/core/ToggleButton';
@@ -58,23 +57,6 @@ const FontSizeMenu = ({editorState, onChange}: any) => {
   const open = Boolean(anchorEl);
 
   const handleChangeInlineStyle = (inlineStyle: any) => {
-    // let nextEditorState = editorState;
-    // const currentStyle = editorState.getCurrentInlineStyle();
-    // console.log(currentStyle.has(inlineStyle));
-    // if(currentStyle.has(inlineStyle)){
-    //   return;
-    // }
-    // inlineTypes.map((item) => {
-    //   const {type} = item;
-    //   if(currentStyle.has(type)){
-    //     console.log(type, currentStyle.has(type));
-    //     nextEditorState = RichUtils.toggleInlineStyle(nextEditorState, type);
-    //   }
-    // });
-    // nextEditorState = RichUtils.toggleInlineStyle(
-    //   nextEditorState,
-    //   inlineStyle
-    // );
     const nextEditorState = toggleInlineStyle(editorState, inlineTypes, inlineStyle);
     onChange(nextEditorState);
     setAnchorEl(null);
